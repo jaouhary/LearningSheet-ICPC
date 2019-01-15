@@ -34,18 +34,45 @@ The array is the most used data structure. It consists on a collection of values
 \begin{center}
 	\begin{tikzpicture}
 	\coordinate (s) at (0,0);
-	\foreach \num in {1,23,-2,7,0,22}{
+	\foreach \num in {4,23,-2,7,0,22}{
 		\node[minimum size=6mm, draw, rectangle] at (s) {\num};
-		\coordinate (s) at ($(s) + (0.7,0)$);
+		\coordinate (s) at ($(s) + (0.65,0)$);
 	}
 	\end{tikzpicture}
 \end{center}
-Arrays are useful because they exploit the addressing logic of computers. Generally, the memory is a one-dimensionnal array of words, whose indices are the addresses.
+Arrays are useful because they exploit the addressing logic of computers. Generally, the memory is a one-dimensionnal array of words, whose indices are the addresses. 
 
 \subsubsection{Stack}
 
-The stack is a data structure 
+The stack consists on a collection of data that is added and retrieved according to the FILO(First In Last Out) method : The operations can only be applied on the top element of the stack. \\ \\
+Two operations are used to manipulate the data :
+\begin{itemize}
+	\item push : Used to add a block on the top of the stack. A stack is overflowed if the number of blocks exceeds the capacity.  
+	\item pop : Used to retrieve the block at the top of the stack.
+\end{itemize}
+
+\begin{center}
+	\begin{tikzpicture}
+	\coordinate (s) at (0,0);
+	\node[draw, rectangle] (po) at (1,1) {Pop};
+	\node[draw, rectangle] (pu) at (-1,1) {Push};
+	\draw[->,>=latex] (s.east) to[bend right] (po);
+	\draw[->,>=latex] (pu) to[bend right] (s.west);
+	\foreach \num in {3,23,-2,7,0,22}{
+		\node[minimum size=6mm, draw, rectangle] at (s) {\num};
+		\coordinate (s) at ($(s) - (0,0.65)$);
+	}
+	\end{tikzpicture}
+\end{center}
+
+An intuituve application would be inversing strings or numbers. It is also used for memory management, as well as in expression evaluation. 
+
+%Stacks are implemented using arrays or linked lists. 
+
+
 \subsubsection{Queue}
+
+A queue is 
 \subsubsection{Heap}
 \subsubsection{Hash}
 \subsubsection{Trees}
