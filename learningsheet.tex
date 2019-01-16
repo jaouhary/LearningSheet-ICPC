@@ -10,6 +10,9 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
 \renewcommand{\footrulewidth}{1pt}
 \fancyfoot[C]{\thepage}
 
@@ -65,7 +68,7 @@ Two operations are used to manipulate the data :
 	\end{tikzpicture}
 \end{center}
 
-An intuituve application would be inversing strings or numbers. It is also used for memory management, as well as in expression evaluation. 
+An intuitive application would be inversing strings or numbers. It is also used for memory management, as well as in expression evaluation. 
 
 %Stacks are implemented using arrays or linked lists. 
 
@@ -89,10 +92,36 @@ A queue is
 \subsection{Sorting and Searching}
 
 \subsubsection{Binary Search}
-\subsubsection{Merge Sort}
 \subsubsection{Quick Sort}
-\subsubsection{Heap Sort}
 
+The main concept behind this algorithm is the \textbf{divide and reign} principle.  At each iteration, the initial array is progressively divided into a bigger number of sub-arrays. Each sub-array is sorted by choosing a \textbf{pivot} and placing the elements smaller than him at his left.\footnote{Hence, the bigger elements are placed on his right.} \\ \\
+Here is a pseudo-code scheme is attributed to \textit{Nico Lomuto} :
+\begin{algorithmic}[1]
+\Function {quicksort}{$A$,$lo$,$hi$}
+\State $p \gets \Call {partition}{$A,lo,hi$} $ 
+\State \Call {quicksort}{$A,lo,p-1$} 
+\State \Call {quicksort}{$A,p+1,hi$} 
+\EndFunction
+\\
+\Function {partition}{$A$,$lo$,$hi$}
+	\State $i \gets lo$ 
+	\For{$j \gets lo$ to $hi-1$}
+		\If {$A[j] \leq A[hi]$}
+			\State Switch $A[i]$ with $A[j]$
+			\State $i \gets i+1$
+		\EndIf
+		\State $j \gets j+1$
+	\EndFor
+	\State Switch $A[i]$ with $A[hi]$
+	\Return $i$
+\EndFunction
+\end{algorithmic}
+
+Quicksort can be easily parallelized, and the performance on parallel quicksort is better than mergesort and heapsort. However, it has the possibility to degenerate to $O(n^2)$, which can be devastating if used in large data sets.
+
+\subsubsection{Merge Sort}
+\subsubsection{Heap Sort}
+\subsubsection{Intro Sort}
 \subsection{String manipulation}
 \subsubsection{KMP Algorithm}
 \subsubsection{Rabin Karp}
