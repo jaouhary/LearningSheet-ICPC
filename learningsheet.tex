@@ -6,6 +6,7 @@
 \usepackage{fullwidth}
 
 \usepackage{tikz}
+\usetikzlibrary{shapes}
 \usetikzlibrary{calc}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -34,6 +35,7 @@ In Computer Science, in order to treat and store data, it first needs to be stru
 
 \subsubsection{Array}
 The array is the most used data structure. It consists on a collection of values, such as each value is identified by at least one index. 
+
 \begin{center}
 	\begin{tikzpicture}
 	\coordinate (s) at (0,0);
@@ -45,13 +47,65 @@ The array is the most used data structure. It consists on a collection of values
 \end{center}
 Arrays are useful because they exploit the addressing logic of computers. Generally, the memory is a one-dimensionnal array of words, whose indices are the addresses. 
 
+
+\subsubsection{Linked List}
+
+The linked list is a linear data structure in which the objects are ordered according to the value of their pointer. \\
+
+Every object $x$ of the linked list $L$ has a key attribute $x.key$ and a successor $x.succ$ attribute.
+
+\begin{center}
+	\begin{tikzpicture}
+	\coordinate (s) at (0,0);
+	\node[minimum size=6mm, draw, rectangle] at (s) {};
+		\coordinate (h) at ($(s) +  (-1.2,1)$);
+		\node[draw=none,fill=none] at (h) {Head};
+		\draw[->] (h.south east) -- (s.north west);
+		\coordinate (s) at ($(s) + (0.65,0)$);
+	\node[minimum size=6mm, draw, rectangle] at (s) {23};
+		\coordinate (k) at ($(s) + (-0.3,1)$);
+		\node[draw=none,fill=none] at (k) {Key};
+		\draw[->] (k.south) -- (s.north);
+	        \coordinate (s) at ($(s) + (0.65,0)$);
+	\node[minimum size=6mm, draw, rectangle] at (s) {};
+		\coordinate (t) at ($(s) + (0.7,1)$);	
+		\node[draw=none,fill=none] at (t) {Tail};
+		\draw[->] (t.south west) -- (s.north east);	
+		\coordinate (s) at ($(s) + (0.65,0)$);
+	\end{tikzpicture}
+\end{center}
+
+In the case of double linked lists, a $x.prec$ attribute is added. An exemple is given below : \\
+
+
+	\begin{tikzpicture}[scale=0.9]
+	\coordinate (s) at (1.5,0);
+	\node[minimum size=6mm, draw] (h) at (0,0) {L.head};
+	\draw[->,>=latex] (h)  to [right] (s);
+	\foreach \num in {23,4,5,1}{
+		\node[minimum size=6mm, draw, rectangle] (p1) at (s) {};
+		\coordinate (s) at ($(s) + (0.65,0)$);
+		\node[minimum size=6mm, draw, rectangle] (p1) at (s) {\num};
+		\coordinate (s) at ($(s) + (0.65,0)$);
+		\node[minimum size=6mm, draw, rectangle] (p1) at (s) {};
+		\coordinate (s) at ($(s) + (1.2,0)$);
+		\draw[->,>=latex] (p1.east) to [bend right] (s.west);
+		\draw[->,>=latex] (s.west) to [bend right] (p1);
+	}
+	\end{tikzpicture} \\
+
+In the case of a circular list, the attribute $x.prec$ at the queue of the list points at the head, and the attribute $x.succ$ at the head of the list points at the tail. Hence, the list can be seen as a \textbf{ring} of elements.\\
+
+Linked List provide the advantage of having a dynamic size, as in an rray memory is allocated during compilation time while it is allocated at runtime for linked lists.\\ 
+
 \subsubsection{Stack}
 
-The stack consists on a collection of data that is added and retrieved according to the FILO(First In Last Out) method : The operations can only be applied on the top element of the stack. \\ \\
-Two operations are used to manipulate the data :
+The stack consists on a collection of data that is added and retrieved according to the FILO(First In Last Out) method.
+
+Two operations, which can only be applied on the top element of the stack, are used to manipulate the data :
 \begin{itemize}
-	\item push : Used to add a block on the top of the stack. A stack is overflowed if the number of blocks exceeds the capacity.  
-	\item pop : Used to retrieve the block at the top of the stack.
+	\item Push : Used to add a block on the top of the stack. A stack is overflowed if the number of blocks exceeds the capacity.  
+	\item Pop : Used to retrieve the block at the top of the stack.
 \end{itemize}
 
 \begin{center}
@@ -61,21 +115,18 @@ Two operations are used to manipulate the data :
 	\node[draw, rectangle] (pu) at (-1,1) {Push};
 	\draw[->,>=latex] (s.east) to[bend right] (po);
 	\draw[->,>=latex] (pu) to[bend right] (s.west);
-	\foreach \num in {3,23,-2,7,0,22}{
+	\foreach \num in {1,23,-2,7,0,22}{
 		\node[minimum size=6mm, draw, rectangle] at (s) {\num};
 		\coordinate (s) at ($(s) - (0,0.65)$);
 	}
 	\end{tikzpicture}
 \end{center}
 
-An intuitive application would be inversing strings or numbers. It is also used for memory management, as well as in expression evaluation. 
-
-%Stacks are implemented using arrays or linked lists. 
-
+An intuitive application would be inversing strings or numbers. It is also used for memory management, as well as in expression evaluation. Stacks are implemented using arrays or linked lists, the two previous data structures.
 
 \subsubsection{Queue}
 
-A queue is 
+
 \subsubsection{Heap}
 \subsubsection{Hash}
 \subsubsection{Trees}
